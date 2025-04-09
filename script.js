@@ -10,7 +10,7 @@ const questions = [
     correctAnswer: "Robin Padilla"
   },
   {
-    question: "A controversial lawyer who was disbarred for being misogynistic, sexist, abusive, and repeated intemperate language.",
+    question: "A former lawyer in the Philippines known for saying \"mga b*b*!\".",
     options: ["Grand Pabbie", "Larry Gadon", "Jingoy Estrada", "Bato Dela Rosa"],
     correctAnswer: "Larry Gadon"
   },
@@ -30,9 +30,9 @@ const questions = [
     correctAnswer: "Answering"
   },
   {
-    question: "During a budget hearing, when Senator Risa Hontiveros asked about the allocation of the ₱10 million budget for the book 'Isang Kaibigan', how did Vice President Sara Duterte respond?",
-    options: ["She provided a detailed breakdown of the budget allocation.", "She admitted there were discrepancies in the budget.", "She accused Hontiveros of politicizing the budget hearing.", "She promised to revise the budget and submit a new proposal."],
-    correctAnswer: "She accused Hontiveros of politicizing the budget hearing."
+    question: "What is the title of the book authored by Vice President Sara Duterte, which is centered on themes of friendship and unity?",
+    options: ["Isang Kaibigan", "Ang Pag-asa ng Bayan", "Sa Kabila ng Lahat", "Tahanan ng Pagkakaisa"],
+    correctAnswer: "Isang Kaibigan"
   },
   {
     question: "During a campaign speech, what creature dared to interrupt President Duterte?",
@@ -47,7 +47,7 @@ const questions = [
   {
     question: "According to Alice Guo, where did she grow up?",
     options: ["Sa Shenzhen Sorting Center", "Sa Farm", "Sa Cornelia Street", "Sa Bamban, Tarlac"],
-    correctAnswer: "Sa Bamban, Tarlac"
+    correctAnswer: "Sa Farm"
   },
   {
     question: "Who said, 'Baliw na baliw kayo sa research! Aanhin niyo ba ang research?'",
@@ -62,7 +62,7 @@ const questions = [
   {
     question: "Who said this phrase:\n 'Wala akong alam diyan, pero kung gusto niyo, magre-research ako sa TikTok!'?",
     options: ["Mocha Uson", "Harry Roque", "Salvador Panelo", "Sara Duterte"],
-    correctAnswer: "Sara Duterte"
+    correctAnswer: "Mocha Uson"
   },
   {
     question: "Which Senatorial Aspirant in 2022 was rebutted by Atty. Luke Espirito using the line 'Dapat tinuturo sa school na masama ang extrajudicial killings, masama ang red-tagging, masama si Marcos, marami siyang human rights violations. Noong panahon– .Binuksan mo ang usapan, 'wag mo kong pagbawalan!'??",
@@ -77,12 +77,12 @@ const questions = [
   {
     question: "Who is the Vice President who went viral for saying 'Naku, kawawa ka naman' to a netizen due to the spread of fake news about a spliced video?",
     options: ["Jejomar Binay", "Sara Duterte", "Leni Robredo", "Gloria Macapagal-Arroyo"],
-    correctAnswer: "Sara Duterte"
+    correctAnswer: "Leni Robredo"
   },
   {
     question: "Fill in the blanks: \n'Be a hero, ________.'",
     options: ["Withdraw", "Fly", "Surrender", "Go home"],
-    correctAnswer: "Go home"
+    correctAnswer: "Withdraw"
   },
   {
     question: "Where was Former President Rodrigo Duterte taken after being arrested?",
@@ -97,7 +97,7 @@ const questions = [
   {
     question: "Who among the children of the Former President Duterte became viral about the 'Wake and Bake' post?",
     options: ["Sara Duterte", "Kitty Duterte", "Sebastian Duterte", "Paolo Duterte"],
-    correctAnswer: "Sebastian Duterte"
+    correctAnswer: "Kitty Duterte"
   }
 ];
 
