@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Development Quiz</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!-- DARK MODE TOGGLE -->
+    <div id="dark-mode-container">
+      <button id="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    </div>
+
+    <!-- 🌟 START SCREEN -->
+    <div id="start-screen">
+      <h1>Welcome to the Web Dev Quiz!</h1>
+      <p>Test your knowledge on HTML, CSS, and JavaScript.</p>
+      <button id="start-button" class="primary-button">Start Quiz</button>
+    </div>
+
+    <!-- 📚 QUIZ SCREEN -->
+    <div id="quiz-container" style="display: none;">
+      <!-- NAVIGATION BUTTONS -->
+      <div id="navigation-bar">
+        <button id="home-button" onclick="goToHome()" class="nav-button">🏠 Home</button>
+        <button id="restart-quiz-btn" onclick="restartQuiz()" class="nav-button">🔄 Restart Quiz</button>
+      </div>
+      
+      <!-- Question header with number -->
+      <div id="question-header">
+        <span id="question-number">Question 1 of X</span>
+      </div>  
+      
+      <!-- Question & Options -->
+      <h2 id="question">Question will go here</h2>
+      <div id="options">
+        <!-- Options will be inserted via JavaScript -->
+      </div>
+      
+      <!-- Result Feedback (now hidden) -->
+      <div id="result"></div>
+      
+      <!-- Navigation Buttons -->
+      <div id="navigation-buttons">
+        <button id="next-button" onclick="nextQuestion()" class="primary-button">Next Question ▶️</button>
+      </div>
+    </div>
+
+    <!-- 🏁 FINAL SCORE SCREEN -->
+    <div id="score-screen" style="display: none;"> 
+      <h2>Quiz Complete!</h2>
+      <p id="final-score">Your final score is: X out of X</p>
+      <p id="congratulatory-message" class="congratulatory-message"></p>
+      
+      <div class="button-group">
+        <button onclick="restartQuiz()" class="primary-button">Try Again</button>
+        <button onclick="showAnswerKey()" class="secondary-button">See Answer Key</button>
+        <button onclick="goToHome()" class="nav-button">🏠 Home</button>
+      </div>
+    </div>
+
+    <!-- 📝 ANSWER KEY SECTION -->
+    <div id="answer-key-section" style="display: none;">
+      <h2>Answer Key</h2>
+      <div id="answer-key-content">
+        <!-- Answer key will be populated here -->
+      </div>
+      <div class="button-group">
+        <button onclick="backToResults()" class="nav-button">Back to Results</button>
+        <button onclick="restartQuiz()" class="primary-button">Try Again</button>
+        <button onclick="goToHome()" class="nav-button">🏠 Home</button>
+      </div>
+    </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
