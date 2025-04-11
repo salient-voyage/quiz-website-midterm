@@ -101,6 +101,8 @@ const questions = [
   }
 ];
 
+const scoreSound = new Audio('budots.mp3');
+
 let currentQuestionIndex = 0;
 let score = 0;
 let userAnswers = [];
@@ -187,6 +189,8 @@ function calculateFinalScore() {
       score++;
     }
   });
+
+  scoreSound.play();
 }
 
 function getCongratulatoryMessage() {
