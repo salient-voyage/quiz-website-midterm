@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #484EA5;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,6 +9,7 @@ body {
   margin: 0;
   padding: 20px;
   transition: background-color 0.3s, color 0.3s;
+  border: 10px solid #e0e0e0;
 }
 
 /* Dark Mode Styles */
@@ -56,9 +57,143 @@ body.dark-mode .primary-button {
   background-color: #0d6efd;
 }
 
+/* ---------start screen layout--------------- */
+
+#start-screen {
+  background-color: #E2DCD3;
+  padding: 20px 50px;
+  box-shadow: 20px 10px 0px #1E1E1E;
+  width: 60%;
+
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#img-container {
+  background-image: url('header-image.png');
+  background-size: cover;
+  background-position: center;
+  align-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+#quiz-title-container {
+  background-color: #484EA5;
+  padding: 3px;
+}
+
+#quiz-title-container h1 {
+  padding-bottom: 0;
+  margin: 0;
+  text-transform: uppercase;
+  font-family: 'Montserrat';
+  font-size: 7.8rem;
+  font-weight: 900;
+  color: #E2DCD3;
+}
+
+#quiz-title-container h4 {
+  font-family: 'Alegreya';
+  font-size: 1.5rem;
+  margin: 1px;
+  color: #E2DCD3;
+  font-weight: 400;
+}
+
+#quiz-subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+
+#group-name {
+  text-transform: uppercase;
+  background-color: #E2DCD3;
+  color: #0a3055;
+  font-size: 3rem;
+  font-family: 'Montserrat';
+  color: #CA2C27;
+  border: 2px solid #CA2C27;
+  padding: 5px 70px;
+}
+
+.design-div {
+  padding: 5px 70px;
+  font-size: 3rem;
+  font-family: 'Montserrat';
+  color: #E2DCD3;
+  background-color: #484EA5;
+  border: 2px solid #484EA5;
+}
+
+#start-screen table thead th {
+  font-size: 2rem;
+  border: 2px solid #484EA5;
+  border-bottom: 3px solid #484EA5;
+}
+
+#start-screen table tbody td {
+  border: 2px solid #484EA5;
+  font-size: 3.5rem;
+  width: 14.28%;
+  text-align: center;
+}
+
+.main-text {
+  color: #CA2C27;
+}
+
+#start-screen table {
+  border-collapse: collapse; 
+  border: 2px solid #484EA5;
+  font-family: 'Montserrat';
+  color: #484EA5;
+  width: 100%; 
+}
+
+#start-button {
+  color: #1E1E1E;
+  font-family: 'alegreya';
+  position: absolute;
+  right: 15rem;
+  bottom: 1rem;
+  padding: 1rem 1.2rem;
+  font-weight: bold;
+  transform: rotate(15deg);
+  font-size: 2.5rem;
+  font-weight: 8s00;
+  cursor: pointer;
+  background-color: #E0CD39;
+  width: 200px;
+  aspect-ratio: 1;
+  clip-path: polygon(
+  100% 50%,
+  68.83% 59.07%,
+  81.17% 89.09%,
+  54.65% 70.38%,
+  38.87% 98.75%,
+  36.97% 66.34%,
+  4.95% 71.69%,
+  29.1% 50%,
+  4.95% 28.31%,
+  36.97% 33.66%,
+  38.87% 1.25%,
+  54.65% 29.62%,
+  81.17% 10.91%,
+  68.83% 40.93%
+  );
+}
+
+#start-button {
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+}
+
+/* ------------------------------------ */
+
 /* Container Styles */
 #quiz-container,
-#start-screen,
 #score-screen,
 #answer-key-section {
   background-color: #fff;
@@ -149,6 +284,167 @@ body.dark-mode #question-header {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+@media (min-width: 768px) {
+  #options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1490px) {
+  #quiz-subtitle div {
+    font-size: 1.5rem;
+  }
+
+  #start-button {
+    position: absolute;
+    right: 8rem;
+    bottom: 1rem;
+    padding: 1rem 1.2rem;
+    font-weight: bold;
+    transform: rotate(15deg);
+    font-size: 2.5rem;
+    cursor: pointer;
+    background-color: #E0CD39;
+    width: 200px;
+    aspect-ratio: 1;
+  }
+}
+
+/* -----media query for start screen---------- */
+
+@media (max-width: 1400px) {
+  #quiz-subtitle div {
+    font-size: 1.5rem;
+  }
+
+  #start-button {
+    position: absolute;
+    right: 6rem;
+    bottom: 1rem;
+    padding: 1rem 1.2rem;
+    font-weight: bold;
+    transform: rotate(15deg);
+    font-size: 2.5rem;
+    cursor: pointer;
+    background-color: #E0CD39;
+    width: 180px;
+    aspect-ratio: 1;
+  }
+}
+
+@media (max-width: 1260px) {
+
+  #quiz-title-container h1 {
+    padding-bottom: 0;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-size: 6rem;
+    font-weight: 900;
+    color: #E2DCD3;
+  }
+
+  #quiz-subtitle div {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 945px) {
+
+  #start-screen table thead th,
+  #start-screen table tbody td {
+    font-size: clamp(1.2rem, 3vw, 3rem);
+  }
+  
+}
+
+@media (max-width: 768px) {
+  #quiz-title-container h1 {
+    font-size: 4rem;
+  }
+
+  #quiz-title-container h4 {
+    font-size: 1.2rem;
+  }
+
+  #quiz-subtitle {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #group-name, .design-div {
+    font-size: 2rem;
+    padding: 5px 20px;
+  }
+
+  #start-screen {
+    width: 90%;
+    padding: 15px 20px;
+  }
+
+  #start-button {
+    right: 2rem;
+    bottom: 1rem;
+    width: 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  #quiz-title-container h1 {
+    font-size: 3rem;
+  }
+
+  #quiz-title-container h4 {
+    font-size: 1rem;
+  }
+
+  #group-name, .design-div {
+    font-size: 1.5rem;
+    padding: 5px 15px;
+  }
+
+  #start-button {
+    width: 120px;
+    font-size: 1.5rem;
+    right: 1rem;
+  }
+
+  #start-screen table thead th,
+  #start-screen table tbody td {
+    font-size: 1.2rem;
+    padding: 4px;
+  }
+}
+
+@media (max-width: 400px) {
+  #quiz-title-container h1 {
+    font-size: 2.4rem;
+  }
+
+  #quiz-title-container h4 {
+    font-size: 0.9rem;
+  }
+
+  #group-name, .design-div {
+    font-size: 1.2rem;
+    padding: 4px 10px;
+  }
+
+  #start-button {
+    width: 100px;
+    font-size: 1.2rem;
+    right: 0.5rem;
+  }
+
+  #start-screen {
+    box-shadow: 10px 5px 0px #1E1E1E;
+    padding: 10px;
+  }
+}
+
+/* ------------------------------------ */
+
 
 .option {
   background-color: #f8f9fa;
