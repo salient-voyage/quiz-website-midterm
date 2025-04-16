@@ -311,3 +311,26 @@ questions.sort(() => Math.random() - 0.5);
 questions.forEach(q => {
   q.options.sort(() => Math.random() - 0.5);
 });
+
+// hiding and showing navigation buttons
+// script.js
+
+window.onload = () => {
+  const homeButton = document.getElementById('home-button');
+  const restartButton = document.getElementById('restart-quiz-btn');
+  const startButton = document.getElementById('start-button');
+
+  function showNavigation() {
+    homeButton.style.display = 'inline-block';
+    restartButton.style.display = 'inline-block';
+  }
+
+  function goToHome() {
+    homeButton.style.display = 'none';
+    restartButton.style.display = 'none';
+  }
+
+  startButton.addEventListener('click', showNavigation);
+  homeButton.addEventListener('click', goToHome);
+};
+
