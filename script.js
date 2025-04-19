@@ -247,6 +247,8 @@ function calculateFinalScore() {
 }
 
 function getCongratulatoryMessage() {
+
+  
   if (score === 20) {
     return "Edi ikaw na nakasagap ng chismis! Bumoto ka ng matalino ha, baka ikaw pa ang susunod na campaign manager! 🗳️";
   } else if (score >= 15 && score <= 19) {
@@ -264,6 +266,7 @@ function showScoreScreen() {
   document.getElementById("quiz-container").style.display = "none";
   document.getElementById("score-screen").style.display = "block";
   document.getElementById("answer-key-section").style.display = "none";
+  document.getElementById("progress-container").style.display = 'none';
   
   const congratulatoryMessage = getCongratulatoryMessage();
   document.getElementById("final-score").textContent = `Your final score is: ${score} out of ${questions.length}`;
