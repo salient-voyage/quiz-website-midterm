@@ -2,11 +2,13 @@
 <html>
 <head>
   <title>Web Development Quiz</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -32,15 +34,15 @@
     <!-- 🌟 START SCREEN -->
     <div id="start-screen">
       <header id="quiz-title-container">
-      <div id="img-container">
-      <h1><strong>politika-lat</strong></h1>
-      <h4>Escape the discontent. Experience the Philippine Government</h4>
-      </div>
+        <div id="img-container">
+        <h1><strong>politika-lat</strong></h1>
+        <h4>Escape the discontent. Experience the Philippine Government</h4>
+        </div>
       </header>
       <header id="quiz-subtitle">
-      <div class="design-div">2025</div>
-      <div id="group-name">group 1</div>
-      <div class="design-div">2025</div>
+        <div class="design-div">2025</div>
+        <div id="group-name">group 1</div>
+        <div class="design-div">2025</div>
       </header>
 
       <div class="table-wrapper">
@@ -90,7 +92,7 @@
       <td class="main-text">U</td>
       <td class="main-text">I</td>
       <td class="main-text">Z</td>
-      <td class="main-text">?</td>
+      <td class="main-text">?</td>  
       <td>D</td>
       </tr>
       <tr>
@@ -105,38 +107,49 @@
       </tbody>
       </table>
       </div>
-      <button id="start-button" class="primary-button" onclick="showNavigation()">Yes</button>
+      <button id="start-button" class="primary-button">Yes</button>
     </div>
       
     <div id="navigation-bar">
-      <button id="home-button" onclick="goToHome()" class="nav-button" style="display: none;">🏠 Home</button>
-      <button id="restart-quiz-btn" onclick="restartQuiz()" class="nav-button" style="display: none;">🔄 Restart Quiz</button>
+      <button id="home-button" onclick="goToHome()" class="nav-button" style="display: none;">Home</button>
+      <button id="restart-quiz-btn" onclick="restartQuiz()" class="nav-button" style="display: none;">Restart Quiz</button>
     </div>
     <!-- 📚 QUIZ SCREEN -->
-    <div id="quiz-container" style="display: none;">
-
-      <div class="inner-container">
+    <div id="quiz-container" style="display: none; position: relative;">
+      <div class="sub-container">
+        <div id="question-image-container" class="left-container">
+          <img id="question-image" src="" alt="Question related image"/>
+          <div class="question-banner"></div>
+          <div id="question-header" class="question-num-subscript">
+            <span id="question-number">Question 1</span>
+          </div>
+        </div>
+          <div class="inner-container">
               <!-- Question header with number -->
-      <div id="question-header">
-        <span id="question-number">Question 1 of X</span>
-      </div>  
-      
-      <!-- Question & Options -->
-      <h2 id="question">Question will go here</h2>
-      <div id="options">
-        <!-- Options will be inserted via JavaScript -->
-      </div>
-      
-      <!-- Result Feedback (now hidden) -->
-      <div id="result"></div>
-      
-      <!-- Navigation Buttons -->
-      <div id="navigation-buttons">
-        <button id="next-button" onclick="nextQuestion()" class="primary-button">Next Question ▶️</button>
+                <span id="question-number-hdng" style="text-align: left;" >Question 1</span>
+
+            <!-- Question & Options -->
+            <h2 id="question">Question will go here</h2>
+            <div id="options">
+            <!-- Options will be inserted via JavaScript -->
+            </div>
+            
+            <!-- Result Feedback (now hidden) -->
+            <div id="result"></div>
+            
+            <!-- Navigation Buttons -->
+            <div id="navigation-buttons">
+            <button id="next-button" onclick="nextQuestion()" class="primary-button"><em>Next</em></button>
+            </div>
+          </div>
       </div>
     </div>
+    <div id="progress-container"">
+      <div id="progress-label"><em>Progress</em></div>
+      <div id="progress-track">
+        <div id="progress-bar"></div>
       </div>
-      
+    </div>
 
 
     <!-- 🏁 FINAL SCORE SCREEN -->
