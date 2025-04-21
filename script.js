@@ -146,6 +146,15 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function displayQuestion() {
+
+  // Shuffle questions
+  questions.sort(() => Math.random() - 0.5);
+
+  // Shuffle options within each question
+  questions.forEach(q => {
+    q.options.sort(() => Math.random() - 0.5);
+  });
+
   const currentQuestion = questions[currentQuestionIndex];
   questionElement.innerHTML = currentQuestion.question.replace(/\n/g, "<br>");
 
@@ -158,7 +167,7 @@ function displayQuestion() {
 
   if (!bodyElement.className) {
     bodyElement.classList.add('quiz-body');
-  } else {
+  } else if (!bodyElement.classList.contains('dark-mode')) {
     bodyElement.className = 'quiz-body';
   }
 
@@ -362,16 +371,10 @@ document.getElementById("start-button").addEventListener("click", () => {
   displayQuestion();
 });
 
-// Initialize the quiz
+
+
+
 displayQuestion();
-
-// Shuffle questions
-questions.sort(() => Math.random() - 0.5);
-
-// Shuffle options within each question
-questions.forEach(q => {
-  q.options.sort(() => Math.random() - 0.5);
-});
 
 // hiding and showing navigation buttons
 
