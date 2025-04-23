@@ -147,14 +147,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function displayQuestion() {
 
-  // Shuffle questions
-  questions.sort(() => Math.random() - 0.5);
-
-  // Shuffle options within each question
-  questions.forEach(q => {
-    q.options.sort(() => Math.random() - 0.5);
-  });
-
   const currentQuestion = questions[currentQuestionIndex];
   questionElement.innerHTML = currentQuestion.question.replace(/\n/g, "<br>");
 
@@ -371,11 +363,6 @@ document.getElementById("start-button").addEventListener("click", () => {
   displayQuestion();
 });
 
-
-
-
-displayQuestion();
-
 // hiding and showing navigation buttons
 
 window.onload = () => {
@@ -397,3 +384,12 @@ window.onload = () => {
   homeButton.addEventListener('click', goToHome);
 };
 
+displayQuestion();
+
+// Shuffle questions
+questions.sort(() => Math.random() - 0.5);
+
+// Shuffle options within each question
+questions.forEach(q => {
+  q.options.sort(() => Math.random() - 0.5);
+});
