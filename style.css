@@ -117,9 +117,8 @@ body.dark-mode .primary-button {
 }
 
 /* ---------- Container Styles -------------- */
-#quiz-container,
-#score-screen,
-#answer-key-section {
+#quiz-container
+ {
   background-color: #E2DCD3;
   padding: 30px;
   border-radius: 12px;
@@ -765,6 +764,161 @@ body.dark-mode .user-wrong {
   color: #f07178;
 }
 
+/* envelope */
+
+
+.envelope-container .closed-envelope,
+.envelope-container .back-envelope,
+.envelope-container .front-envelope,
+.envelope-container .letter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.envelope-container .closed-envelope {
+  background-image: url('closed-envelope.png');
+  z-index: 4;
+}
+
+.envelope-container .back-envelope {
+  background-image: url('back-envelope.png');
+  z-index: 1;
+}
+  .envelope-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 350px;
+    z-index: 10;
+  }
+#score-screen{
+
+.envelope-container .letter {
+  background-image: url('letter2.png');
+  z-index: 2;
+  transition: top 2s ease-in-out;
+  top: 0;
+  display: flex;
+  align-items: center top;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: none;
+}
+/* When envelope opens: letter slides higher */
+.envelope-container.open .letter {
+  top: -200px;
+}
+}
+
+#answer-key-section{
+
+.envelope-container .letter {
+  background-image: url('letter2.png');
+  z-index: 2;
+  transition: top 2s ease-in-out;
+  top: 0;
+  display: flex;
+  align-items: center top;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: none;
+  height: 130%;
+}
+/* When envelope opens: letter slides higher */
+.envelope-container.open .letter {
+  top: -340px;
+}
+}
+
+.envelope-container .front-envelope {
+  background-image: url('front-envelope.png');
+  z-index: 3;
+  top: 0;
+}
+
+
+/* Closed envelope disappears */
+.envelope-container.open .closed-envelope {
+  display: none;
+}
+
+.letter-scroll {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+
+
+
+/* Fix button position to bottom right of score screen */
+.floating-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #ee453f;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-family: 'Alegreya', serif;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.floating-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* answer key */
+.answer-key-columns {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  gap: 40px;
+  padding: 20px;
+  font-family: 'Alegreya', serif;
+}
+
+.answer-column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.answer-column p {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.5;
+  font-size: 15.5px;
+}
+
+
+.your-score{
+  margin-top: 0; margin-bottom: 0; font-size: 1.1rem;
+}
+
+.score{
+  margin-top: 0;font-size: 4.5rem; font-weight: bold; text-align: center;
+}
+.congratulatory-message{
+  font-size: 1.1rem;
+}
+
 /* -----media query for start screen---------- */
 
 @media (max-width: 1490px) {
@@ -934,6 +1088,14 @@ body.dark-mode .user-wrong {
     margin: 20px auto;
     padding: 0 10px;
   }
+  /* for the answer key */
+  .answer-key-columns {
+    flex-direction: column;
+  }
+
+  .answer-column {
+    width: 100%;
+  }
 }
 
 @media (max-width: 576px) {
@@ -961,6 +1123,7 @@ body.dark-mode .user-wrong {
     font-size: 1.2rem;
     padding: 4px;
   }
+  
 }
 
 @media (max-width: 400px) {
