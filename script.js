@@ -329,6 +329,7 @@ function goToHome() {
     bodyElement.classList.remove('quiz-body');
   }
   document.getElementById("progress-container").style.display = 'none';
+  document.getElementById("see-answer-button").style.display = "none"; // 👈 hide here too
 }
 
 function toggleDarkMode() {
