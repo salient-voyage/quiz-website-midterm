@@ -1,3 +1,4 @@
+// Quiz Question Content
 const questions = [
   {
     question: "The famous name crafted by the OVP for its supposed recipients of confidential funds.",
@@ -192,7 +193,7 @@ function displayQuestion() {
   // Clear result text
   resultElement.textContent = "";
   updateProgressBar(currentQuestionIndex, questions.length);
-  document.getElementById("see-answer-button").style.display = "none"; // 👈 hide here
+  document.getElementById("see-answer-button").style.display = "none"; 
 }
 
 function updateProgressBar(currentIndex, totalQuestions) {
@@ -281,7 +282,6 @@ function showScoreScreen() {
 
 }
 
-
 function showAnswerKey() {
   document.getElementById("score-screen").style.display = "none";
   document.getElementById("answer-key-section").style.display = "block";
@@ -311,7 +311,7 @@ function restartQuiz() {
   document.getElementById("answer-key-section").style.display = "none";
   document.getElementById("quiz-container").style.display = "inline-flex";
 
-  document.getElementById("see-answer-button").style.display = "none"; // 👈 hide here too
+  document.getElementById("see-answer-button").style.display = "none"; 
   displayQuestion();
 
   // Shuffle questions
@@ -341,7 +341,7 @@ function goToHome() {
     bodyElement.classList.remove('quiz-body');
   }
   document.getElementById("progress-container").style.display = 'none';
-  document.getElementById("see-answer-button").style.display = "none"; // 👈 hide here too
+  document.getElementById("see-answer-button").style.display = "none"; 
 
   // Shuffle questions
   questions.sort(() => Math.random() - 0.5);
@@ -372,19 +372,18 @@ function toggleDarkMode() {
 function backToResults() {
   document.getElementById("answer-key-section").style.display = "none";
   document.getElementById("score-screen").style.display = "block";
-  document.getElementById("see-answer-button").style.display = "inline-block"; // 👈 restore the button
+  document.getElementById("see-answer-button").style.display = "inline-block"; 
 }
 
 // Start the quiz when the start button is clicked
 document.getElementById("start-button").addEventListener("click", () => {
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("quiz-container").style.display = "flex";
-  document.getElementById("see-answer-button").style.display = "none"; // 👈 hide here
+  document.getElementById("see-answer-button").style.display = "none"; 
   displayQuestion();
 });
 
 // hiding and showing navigation buttons
-
 window.onload = () => {
   const homeButton = document.getElementById('home-button');
   const restartButton = document.getElementById('restart-quiz-btn');
@@ -417,4 +416,3 @@ questions.forEach(q => {
 });
 
 
-// envelope
