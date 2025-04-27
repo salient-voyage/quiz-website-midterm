@@ -313,6 +313,14 @@ function restartQuiz() {
 
   document.getElementById("see-answer-button").style.display = "none"; // 👈 hide here too
   displayQuestion();
+
+  // Shuffle questions
+  questions.sort(() => Math.random() - 0.5);
+
+  // Shuffle options within each question
+  questions.forEach(q => {
+    q.options.sort(() => Math.random() - 0.5);
+  });
 }
 
 function goToHome() {
@@ -330,6 +338,14 @@ function goToHome() {
   }
   document.getElementById("progress-container").style.display = 'none';
   document.getElementById("see-answer-button").style.display = "none"; // 👈 hide here too
+
+  // Shuffle questions
+  questions.sort(() => Math.random() - 0.5);
+
+  // Shuffle options within each question
+  questions.forEach(q => {
+    q.options.sort(() => Math.random() - 0.5);
+  });
 }
 
 function toggleDarkMode() {
@@ -365,6 +381,7 @@ window.onload = () => {
   const homeButton = document.getElementById('home-button');
   const restartButton = document.getElementById('restart-quiz-btn');
   const startButton = document.getElementById('start-button');
+  
 
   function showNavigation() {
     homeButton.style.display = 'inline-block';
@@ -378,6 +395,7 @@ window.onload = () => {
 
   startButton.addEventListener('click', showNavigation);
   homeButton.addEventListener('click', goToHome);
+  restartButton.addEventListener('click', restartQuiz);
 };
 
 displayQuestion();
