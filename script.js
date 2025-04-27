@@ -192,6 +192,7 @@ function displayQuestion() {
   // Clear result text
   resultElement.textContent = "";
   updateProgressBar(currentQuestionIndex, questions.length);
+  document.getElementById("see-answer-button").style.display = "none"; // 👈 hide here
 }
 
 function updateProgressBar(currentIndex, totalQuestions) {
@@ -266,49 +267,40 @@ function getCongratulatoryMessage() {
 function showScoreScreen() {
   document.getElementById("quiz-container").style.display = "none";
   document.getElementById("score-screen").style.display = "block";
-  document.getElementById("answer-key-section").style.display = "none";
   document.getElementById("progress-container").style.display = 'none';
-  
+  document.getElementById("see-answer-button").style.display = "inline-block"; 
+
   const congratulatoryMessage = getCongratulatoryMessage();
-  document.getElementById("final-score").textContent = `Your final score is: ${score} out of ${questions.length}`;
-  document.getElementById("congratulatory-message").textContent = congratulatoryMessage;
+  document.getElementById("dynamic-score").textContent = `${score} points`;
+  document.getElementById("dynamic-message").textContent = congratulatoryMessage;
+
+  // Open the envelope
+  setTimeout(() => {
+    document.getElementById("envelope").classList.add("open");
+  }, 500);
+
 }
+
 
 function showAnswerKey() {
   document.getElementById("score-screen").style.display = "none";
   document.getElementById("answer-key-section").style.display = "block";
-  
-  const answerKeyContent = document.getElementById("answer-key-content");
-  answerKeyContent.innerHTML = "";
-  
+  document.getElementById("see-answer-button").style.display = "none";
+
+  const col1 = document.getElementById("answer-column-1");
+  const col2 = document.getElementById("answer-column-2");
+
+  col1.innerHTML = "";
+  col2.innerHTML = "";
+
   questions.forEach((q, index) => {
-    const questionDiv = document.createElement("div");
-    questionDiv.classList.add("answer-key-item");
-    
-    const questionNumber = document.createElement("h3");
-    questionNumber.textContent = `Question ${index + 1}`;
-    questionDiv.appendChild(questionNumber);
-    
-    const questionText = document.createElement("p");
-    questionText.innerHTML = q.question.replace(/\n/g, "<br>");
-    questionText.classList.add("question-text");
-    questionDiv.appendChild(questionText);
-    
-    const correctAnswer = document.createElement("p");
-    correctAnswer.innerHTML = `<strong>Correct Answer:</strong> ${q.correctAnswer}`;
-    correctAnswer.classList.add("correct-answer");
-    questionDiv.appendChild(correctAnswer);
-    
-    if (userAnswers[index]) {
-      const userAnswer = document.createElement("p");
-      userAnswer.innerHTML = `<strong>Your Answer:</strong> ${userAnswers[index]}`;
-      userAnswer.classList.add(userAnswers[index] === q.correctAnswer ? "user-correct" : "user-wrong");
-      questionDiv.appendChild(userAnswer);
-    }
-    
-    answerKeyContent.appendChild(questionDiv);
+    const item = document.createElement("p");
+    item.innerHTML = `<strong>${index + 1}.</strong> ${q.correctAnswer}`;
+    const targetCol = index < 10 ? col1 : col2;
+    targetCol.appendChild(item);
   });
 }
+
 
 function restartQuiz() {
   currentQuestionIndex = 0;
@@ -319,6 +311,7 @@ function restartQuiz() {
   document.getElementById("answer-key-section").style.display = "none";
   document.getElementById("quiz-container").style.display = "inline-flex";
 
+  document.getElementById("see-answer-button").style.display = "none"; // 👈 hide here too
   displayQuestion();
 }
 
@@ -354,12 +347,14 @@ function toggleDarkMode() {
 function backToResults() {
   document.getElementById("answer-key-section").style.display = "none";
   document.getElementById("score-screen").style.display = "block";
+  document.getElementById("see-answer-button").style.display = "inline-block"; // 👈 restore the button
 }
 
 // Start the quiz when the start button is clicked
 document.getElementById("start-button").addEventListener("click", () => {
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("quiz-container").style.display = "flex";
+  document.getElementById("see-answer-button").style.display = "none"; // 👈 hide here
   displayQuestion();
 });
 
@@ -393,3 +388,6 @@ questions.sort(() => Math.random() - 0.5);
 questions.forEach(q => {
   q.options.sort(() => Math.random() - 0.5);
 });
+
+
+// envelope

@@ -153,30 +153,41 @@
 
 
     <!-- 🏁 FINAL SCORE SCREEN -->
-    <div id="score-screen" style="display: none;"> 
-      <h2>Quiz Complete!</h2>
-      <p id="final-score">Your final score is: X out of X</p>
-      <p id="congratulatory-message" class="congratulatory-message"></p>
-      
-      <div class="button-group">
-        <button onclick="restartQuiz()" class="primary-button">Try Again</button>
-        <button onclick="showAnswerKey()" class="secondary-button">See Answer Key</button>
-        <button onclick="goToHome()" class="nav-button">🏠 Home</button>
+
+    <div id="score-screen" style="display: none; position: relative;"> 
+      <div class="envelope-container" id="envelope">
+        <div class="closed-envelope"></div>
+        <div class="back-envelope"></div>
+        <div class="letter">
+          <div id="letter-content" style="font-family: Alegreya, serif; padding: 30px;">
+            <p class="your-score">Your score is:</p>
+            <h1 id="dynamic-score" class="score"></h1>
+            <p id="dynamic-message" class="congatulatory-message"></p>
+          </div>
+        </div>
+        <div class="front-envelope"></div>
       </div>
     </div>
 
-    <!-- 📝 ANSWER KEY SECTION -->
-    <div id="answer-key-section" style="display: none;">
-      <h2>Answer Key</h2>
-      <div id="answer-key-content">
-        <!-- Answer key will be populated here -->
-      </div>
-      <div class="button-group">
-        <button onclick="backToResults()" class="nav-button">Back to Results</button>
-        <button onclick="restartQuiz()" class="primary-button">Try Again</button>
-        <button onclick="goToHome()" class="nav-button">🏠 Home</button>
-      </div>
+<button id="see-answer-button" onclick="showAnswerKey()" class="floating-button">See Answer Key</button>
+
+<!-- 📝 ANSWER KEY SECTION -->
+<div id="answer-key-section" style="display: none; position: relative;">
+  <div class="envelope-container open" id="answer-envelope">
+    <div class="closed-envelope"></div>
+    <div class="back-envelope"></div>
+    <div class="letter">
+        <div class="answer-key-columns">
+          <div id="answer-column-1" class="answer-column"></div>
+          <div id="answer-column-2" class="answer-column"></div>
+        </div>
     </div>
+    <div class="front-envelope"></div>
+  </div>
+
+  <button id="back-to-results-button" onclick="backToResults()" class="floating-button">Back to Results</button>
+</div>
+
 
   <script src="script.js"></script>
 </body>
