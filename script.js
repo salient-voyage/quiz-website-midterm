@@ -155,7 +155,7 @@ function displayQuestion() {
   questionNumberElement.textContent = `Question ${currentQuestionIndex + 1}`;
   questionNumberHead.textContent = `Question ${currentQuestionIndex + 1}`;
 
-  document.getElementById("navigation-bar").style.display = 'inline';
+  document.getElementById("navigation-bar").style.display = 'inline-flex';
   document.getElementById("progress-container").style.display = 'inline-flex';
 
   if (!bodyElement.className) {

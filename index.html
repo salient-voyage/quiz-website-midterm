@@ -12,6 +12,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  <div id="navigation-bar">
+    <button id="home-button" onclick="goToHome()" class="nav-button" style="display: none;">Home</button>
+    <button id="restart-quiz-btn" onclick="restartQuiz()" class="nav-button" style="display: none;">Restart Quiz</button>
+  </div>
     <!-- DARK MODE TOGGLE -->
     <div id="dark-mode-container">
       <label class="switch">
@@ -110,10 +114,6 @@
       <button id="start-button" class="primary-button">Yes</button>
     </div>
       
-    <div id="navigation-bar">
-      <button id="home-button" onclick="goToHome()" class="nav-button" style="display: none;">Home</button>
-      <button id="restart-quiz-btn" onclick="restartQuiz()" class="nav-button" style="display: none;">Restart Quiz</button>
-    </div>
     <!-- 📚 QUIZ SCREEN -->
     <div id="quiz-container" style="display: none; position: relative;">
       <div class="sub-container">
