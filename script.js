@@ -321,6 +321,10 @@ function restartQuiz() {
   questions.forEach(q => {
     q.options.sort(() => Math.random() - 0.5);
   });
+
+  // Stop the music
+  scoreSound.pause();
+  scoreSound.currentTime = 0;
 }
 
 function goToHome() {
@@ -346,6 +350,10 @@ function goToHome() {
   questions.forEach(q => {
     q.options.sort(() => Math.random() - 0.5);
   });
+
+  // Stop the music
+  scoreSound.pause();
+  scoreSound.currentTime = 0;
 }
 
 function toggleDarkMode() {
