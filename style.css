@@ -14,14 +14,15 @@ body {
   background-color: var(--main-color);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   min-height: 100vh;
   margin: 0;
   padding: 20px;
   transition: background-color 0.3s, color 0.3s;
   overflow-y: hidden;
+  overflow-x: hidden;
 }
+
 
 .quiz-body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -29,18 +30,19 @@ body {
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
   margin: 0;
   padding: 20px;
   transition: background-color 0.3s, color 0.3s;
-
+  overflow-x: hidden;
 }
+
 
 /* Dark Mode Styles */
 body.dark-mode {
   color: #e0e0e0;
+  background-image: none;
+  background-color: #1e1e1e;
 }
 
 body.dark-mode #start-screen,
@@ -66,8 +68,13 @@ body.dark-mode #start-screen header #img-container {
   border: 2px solid #464646;
 }
 
-body.dark-mode h1, 
-body.dark-mode h2, 
+body.dark-mode #quiz-title-container h1,
+body.dark-mode #quiz-title-container h4 {
+  text-shadow:  1px 1px 2px black;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
 body.dark-mode h3 {
   color: #ffffff;
 }
@@ -86,11 +93,24 @@ body.dark-mode .left-container {
   border-right: 2px dashed #e0e0e0;
 }
 
+body.dark-mode #img-container {
+  background-image: url('header-image.png');
+  background-position: center;
+  background-size: cover;
+}
 
 body.dark-mode .option {
   background-color: #2d2d2d;
   border: 1px solid #e0e0e0;
   color: #e0e0e0;
+}
+
+body.dark-mode .option:hover:not(:disabled) {
+  background-color: #3d3d3d;
+}
+
+body.dark-mode .selected-option {
+  border: 3px solid #e0e0e0;
 }
 
 body.dark-mode .question-num-subscript span {
@@ -107,11 +127,16 @@ body.dark-mode .primary-button {
   background-color: #0d6efd;
 }
 
-body.dark-mode .selected-option {
-  border: 3px solid var(--secondary-color);
-  background-color: #df5b57;
-  transition: all 0.3s ease;
+body.dark-mode #score-screen, 
+body.dark-mode .your-score, 
+body.dark-mode #answer-key-section, 
+body.dark-mode .answer-column,
+body.dark-mode #score-screen .letter h1 {
+  color: #1e1e1e;
 }
+
+
+
 
 
 /* ------------ slider (dark-mode toggle)------------- */
@@ -129,6 +154,7 @@ body.dark-mode .selected-option {
   border-radius: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 /* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
@@ -148,6 +174,7 @@ body.dark-mode .selected-option {
   border-radius: 30px;
   overflow: hidden;
 }
+
 .slider:before {
   position: absolute;
   content: "";
@@ -160,13 +187,16 @@ body.dark-mode .selected-option {
   transition-timing-function: cubic-bezier(0.81, -0.04, 0.38, 1.5);
   box-shadow: inset 8px -4px 0px 0px #fff;
 }
-.switch input:checked + .slider {
+
+.switch input:checked+.slider {
   background-color: #00a6ff;
 }
-.switch input:checked + .slider:before {
+
+.switch input:checked+.slider:before {
   transform: translateX(1.8em);
   box-shadow: inset 15px -4px 0px 15px #ffcf48;
 }
+
 .star {
   background-color: #fff;
   border-radius: 50%;
@@ -175,21 +205,26 @@ body.dark-mode .selected-option {
   transition: all 0.4s;
   height: 5px;
 }
+
 .star_1 {
   left: 2.5em;
   top: 0.5em;
 }
+
 .star_2 {
   left: 2.2em;
   top: 1.2em;
 }
+
 .star_3 {
   left: 3em;
   top: 0.9em;
 }
-.switch input:checked ~ .slider .star {
+
+.switch input:checked~.slider .star {
   opacity: 0;
 }
+
 .cloud {
   width: 3.5em;
   position: absolute;
@@ -198,7 +233,8 @@ body.dark-mode .selected-option {
   opacity: 0;
   transition: all 0.4s;
 }
-.switch input:checked ~ .slider .cloud {
+
+.switch input:checked~.slider .cloud {
   opacity: 1;
 }
 
@@ -226,12 +262,10 @@ h3 {
 /* ---------Navigation Bar & buttons--------------*/
 
 #navigation-bar {
-  position: absolute;
-  top: 50px;
-  right: 40px;
+  width: 100%;
   display: flex;
-  z-index: 1;
-
+  justify-content: right;
+  margin-bottom: 2%;
 }
 
 #navigation-bar button {
@@ -246,7 +280,7 @@ h3 {
   font-family: 'alegreya';
   font-weight: 400;
   font-size: 1.25rem;
-} 
+}
 
 #navigation-bar button:hover {
   background-color: #0000004f;
@@ -263,7 +297,7 @@ h3 {
   position: relative;
   text-align: center;
   transition: background-color 0.3s, color 0.3s;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 
 #img-container {
@@ -347,7 +381,7 @@ h3 {
 
 #start-screen table tbody td {
   border: 2px solid var(--main-color);
-  font-size: 3.5rem;
+  font-size: 3rem;
   width: 14.28%;
   text-align: center;
 }
@@ -360,11 +394,13 @@ h3 {
   background-color: var(--yellow-color);
 }
 
-.paragraph-1, .paragraph-3 {
+.paragraph-1,
+.paragraph-3 {
   background-color: var(--main-color);
 }
 
-.sentence-1, .sentence-3 {
+.sentence-1,
+.sentence-3 {
   background-image: url('background.png');
   background-size: cover;
 }
@@ -374,45 +410,44 @@ h3 {
 }
 
 #start-screen table {
-  border-collapse: collapse; 
+  border-collapse: collapse;
   border: 2px solid var(--main-color);
   font-family: 'Montserrat';
   font-weight: 1000;
   color: var(--main-color);
-  width: 100%; 
+  width: 100%;
 }
 
 #start-button {
   position: absolute;
   color: var(--font-color);
-  bottom: 0;
+  bottom: 10%;
   right: 0;
-  transform: translate(50%, 50%); /* Slightly offset the button outside the corner */
+  transform: translate(50%, 50%);
+  /* Slightly offset the button outside the corner */
   padding: 1rem 1.2rem;
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-family: 'alegreya';
   cursor: pointer;
   background-color: #E0CD39;
-  width: 200px;
+  width: 150px;
   aspect-ratio: 1;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
-  clip-path: polygon(
-    100% 50%,
-    68.83% 59.07%,
-    81.17% 89.09%,
-    54.65% 70.38%,
-    38.87% 98.75%,
-    36.97% 66.34%,
-    4.95% 71.69%,
-    29.1% 50%,
-    4.95% 28.31%,
-    36.97% 33.66%,
-    38.87% 1.25%,
-    54.65% 29.62%,
-    81.17% 10.91%,
-    68.83% 40.93%
-  );
+  clip-path: polygon(100% 50%,
+      68.83% 59.07%,
+      81.17% 89.09%,
+      54.65% 70.38%,
+      38.87% 98.75%,
+      36.97% 66.34%,
+      4.95% 71.69%,
+      29.1% 50%,
+      4.95% 28.31%,
+      36.97% 33.66%,
+      38.87% 1.25%,
+      54.65% 29.62%,
+      81.17% 10.91%,
+      68.83% 40.93%);
   z-index: 10;
 }
 
@@ -424,23 +459,22 @@ h3 {
 
 /* --------------- Question Page ------------*/
 
-#quiz-container
- {
-  margin-top: 5%;
+#quiz-container {
+  margin-top: 1%;
   background-color: #E2DCD3;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 10px 10px 0px var(--font-color);
   width: 70%;
   text-align: center;
-  margin: 20px 50px;
+  margin-bottom: 2%;
   transition: background-color 0.3s, color 0.3s;
 }
 
 #question-image {
-  width: 200px; 
-  height: 300px; 
-  display: block; 
+  width: 200px;
+  height: 300px;
+  display: block;
   object-fit: cover;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
@@ -523,10 +557,10 @@ body.dark-mode .question-banner {
 
 
 #options {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 12px;
-margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .option {
@@ -555,8 +589,8 @@ margin-bottom: 20px;
 }
 
 .selected-option {
-  border: 3px solid var(--secondary-color);
-  background-color: #df5b57;
+  border: 3px solid var(--main-color);
+  background-color: #6368aa;
   transition: all 0.3s ease;
 }
 
@@ -567,8 +601,8 @@ margin-bottom: 20px;
   font-family: 'alegreya';
   font-weight: 1000;
   position: absolute;
-  right: -70px;         
-  bottom: -70px;       
+  right: -70px;
+  bottom: -70px;
   padding: 1rem 1.2rem;
   transform: rotate(15deg);
   font-size: 2rem;
@@ -578,22 +612,20 @@ margin-bottom: 20px;
   width: 200px;
   aspect-ratio: 1;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
-  clip-path: polygon(
-    100% 50%,
-    68.83% 59.07%,
-    81.17% 89.09%,
-    54.65% 70.38%,
-    38.87% 98.75%,
-    36.97% 66.34%,
-    4.95% 71.69%,
-    29.1% 50%,
-    4.95% 28.31%,
-    36.97% 33.66%,
-    38.87% 1.25%,
-    54.65% 29.62%,
-    81.17% 10.91%,
-    68.83% 40.93%
-  );
+  clip-path: polygon(100% 50%,
+      68.83% 59.07%,
+      81.17% 89.09%,
+      54.65% 70.38%,
+      38.87% 98.75%,
+      36.97% 66.34%,
+      4.95% 71.69%,
+      29.1% 50%,
+      4.95% 28.31%,
+      36.97% 33.66%,
+      38.87% 1.25%,
+      54.65% 29.62%,
+      81.17% 10.91%,
+      68.83% 40.93%);
 }
 
 #next-button:hover {
@@ -604,12 +636,12 @@ margin-bottom: 20px;
 #progress-container {
   width: 100%;
   max-width: 800px;
-  margin: 10px auto 10px auto;
+  margin: 0px auto 10px auto;
   padding: 0 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
 }
 
 #progress-label {
@@ -635,7 +667,7 @@ body.dark-mode #progress-label {
   background-color: #eee;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 #progress-bar {
@@ -656,6 +688,7 @@ body.dark-mode #progress-bar {
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
+  margin-bottom: 0;
 }
 
 /* Button Styles */
@@ -726,7 +759,7 @@ body.dark-mode .answer-key-item {
 #question {
   font-family: 'alegreya';
   font-weight: 400;
-  font-size:25px;
+  font-size: 25px;
   margin-bottom: 10px;
 }
 
@@ -776,71 +809,83 @@ body.dark-mode .user-wrong {
   background-image: url('back-envelope.png');
   z-index: 1;
 }
-  .envelope-container {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 500px;
-    height: 350px;
-    z-index: 10;
+
+.envelope-container {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 350px;
+  z-index: 10;
+}
+
+/* ------------------ FINAL SCRORE -------------------- */
+
+.letter-content {
+  font-family: Alegreya, serif;
+  padding: 30px;
+}
+
+#score-screen {
+
+  .envelope-container .letter {
+    background-image: url('letter2.png');
+    z-index: 2;
+    transition: top 2s ease-in-out;
+    top: 0;
+    display: flex;
+    align-items: center top;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: none;
   }
 
-  /* ------------------ FINAL SCRORE -------------------- */
-
-.letter-content{
-  font-family: Alegreya, serif; padding: 30px;
-}
-#score-screen{
-
-.envelope-container .letter {
-  background-image: url('letter2.png');
-  z-index: 2;
-  transition: top 2s ease-in-out;
-  top: 0;
-  display: flex;
-  align-items: center top;
-  justify-content: center;
-  overflow: hidden; 
-  box-shadow: none;
-}
-/* When envelope opens: letter slides higher */
-.envelope-container.open .letter {
-  top: -235px;
-}
+  /* When envelope opens: letter slides higher */
+  .envelope-container.open .letter {
+    top: -235px;
+  }
 }
 
-.your-score{
-  margin-top: 0; margin-bottom: 0; font-size: 1.1rem;
+.your-score {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.1rem;
 }
 
-.score{
-  margin-top: 0;font-size: 4.5rem; font-weight: bold; text-align: center;
-}
-.congratulatory-message{
-font-size: 1.1rem; color: red;
+.score {
+  margin-top: 0;
+  font-size: 4.5rem;
+  font-weight: bold;
+  text-align: center;
 }
 
-  /* ------------------ Answer Key Section -------------------- */
-
-#answer-key-section{
-
-.envelope-container .letter {
-  background-image: url('letter2.png');
-  z-index: 2;
-  transition: top 2s ease-in-out;
-  top: 0;
-  display: flex;
-  align-items: center top;
-  justify-content: center;
-  overflow: hidden;
-  box-shadow: none;
-  height: 130%;
+.congratulatory-message {
+  font-size: 1.1rem;
+  color: red;
 }
-/* When envelope opens: letter slides higher */
-.envelope-container.open .letter {
-  top: -340px;
-}
+
+/* ------------------ Answer Key Section -------------------- */
+
+#answer-key-section {
+
+  .envelope-container .letter {
+    background-image: url('letter2.png');
+    z-index: 2;
+    transition: top 2s ease-in-out;
+    top: 0;
+    display: flex;
+    align-items: center top;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: none;
+    height: 130%;
+  }
+
+  /* When envelope opens: letter slides higher */
+  .envelope-container.open .letter {
+    top: -340px;
+  }
 }
 
 .envelope-container .front-envelope {
@@ -914,6 +959,186 @@ font-size: 1.1rem; color: red;
   font-size: 15.5px;
 }
 
+/* ------------------ FINAL SCORE -------------------- */
+
+/* envelope for score screen and answer key */
+.envelope-container .closed-envelope,
+.envelope-container .back-envelope,
+.envelope-container .front-envelope,
+.envelope-container .letter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.envelope-container .closed-envelope {
+  background-image: url('closed-envelope.png');
+  z-index: 4;
+}
+
+.envelope-container .back-envelope {
+  background-image: url('back-envelope.png');
+  z-index: 1;
+}
+
+.envelope-container {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  /* use percentage instead of fixed px */
+  max-width: 500px;
+  /* keep it from getting too big on large screens */
+  height: auto;
+  aspect-ratio: 5 / 3.5;
+  /* maintain a similar shape */
+  z-index: 10;
+}
+
+.letter-content {
+  font-family: Alegreya, serif;
+  padding: 30px;
+  text-align: justify;
+}
+
+#score-screen {
+
+  .envelope-container .letter {
+    background-image: url('letter2.png');
+    z-index: 2;
+    transition: top 2s ease-in-out;
+    top: 0;
+    display: flex;
+    align-items: center top;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: none;
+  }
+
+  /* When envelope opens: letter slides higher */
+  .envelope-container.open .letter {
+    top: -235px;
+  }
+}
+
+.your-score {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.1rem;
+}
+
+.score {
+  margin-top: 0;
+  font-size: 4.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.congratulatory-message {
+  font-size: 1.1rem;
+  color: red;
+}
+
+/* ------------------ Answer Key Section -------------------- */
+
+#answer-key-section {
+
+  .envelope-container .letter {
+    background-image: url('letter2.png');
+    z-index: 2;
+    transition: top 2s ease-in-out;
+    top: 0;
+    display: flex;
+    align-items: center top;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: none;
+    height: 130%;
+  }
+
+  /* When envelope opens: letter slides higher */
+  .envelope-container.open .letter {
+    top: -300px;
+  }
+}
+
+.envelope-container .front-envelope {
+  background-image: url('front-envelope.png');
+  z-index: 3;
+  top: 0;
+}
+
+
+/* Closed envelope disappears */
+.envelope-container.open .closed-envelope {
+  display: none;
+}
+
+.letter-scroll {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+
+
+
+/* Fix button position to bottom right of score screen */
+.floating-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #ee453f;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-family: 'Alegreya', serif;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.floating-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* answer key */
+.answer-key-columns {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  gap: 40px;
+  padding: 20px;
+  font-family: 'Alegreya', serif;
+  font-size: 13px;
+  margin-right: 4px;
+}
+
+.answer-column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.answer-column p {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.5;
+  /* font-size: 15.5px; */
+}
+
 /* -----media query for start screen---------- */
 
 @media (max-width: 1490px) {
@@ -939,11 +1164,171 @@ font-size: 1.1rem; color: red;
   #quiz-subtitle div {
     font-size: 1.5rem;
   }
+
+  #group-name,
+  .design-div {
+    font-size: 2rem;
+    padding: 5px 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  /* ------------------ FINAL SCORE -------------------- */
+  /* envelope for score screen and answer key */
+
+  .envelope-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 598px;
+    height: 350px;
+    z-index: 10;
+    top: 48%;
+  }
+
+
+
+  .your-score {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.4rem;
+  }
+
+  .your-score {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.4rem;
+  }
+
+  .congratulatory-message {
+    font-size: 1.4rem;
+  }
+
+
+  #score-screen {
+
+    .envelope-container .letter {
+      background-image: url('letter2.png');
+      z-index: 2;
+      transition: top 2s ease-in-out;
+      top: 0;
+      display: flex;
+      align-items: center top;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: none;
+    }
+
+    /* When envelope opens: letter slides higher */
+    .envelope-container.open .letter {
+      top: -235px;
+    }
+  }
+
+
+  /* ------------------ Answer Key Section -------------------- */
+
+  #answer-key-section {
+
+    .envelope-container .letter {
+      background-image: url('letter2.png');
+      z-index: 2;
+      transition: top 2s ease-in-out;
+      top: 0;
+      display: flex;
+      align-items: center top;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: none;
+      height: 130%;
+    }
+
+    /* When envelope opens: letter slides higher */
+    .envelope-container.open .letter {
+      top: -340px;
+    }
+  }
+
+  .envelope-container .front-envelope {
+    background-image: url('front-envelope.png');
+    z-index: 3;
+    top: 0;
+  }
+
+
+  /* Closed envelope disappears */
+  .envelope-container.open .closed-envelope {
+    display: none;
+  }
+
+  .letter-scroll {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+
+
+
+  /* Fix button position to bottom right of score screen */
+  .floating-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #ee453f;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: 'Alegreya', serif;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+
+  .floating-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+
+  /* answer key */
+  .answer-key-columns {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    gap: 40px;
+    padding: 20px;
+    font-family: 'Alegreya', serif;
+  }
+
+  .answer-column {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .answer-column p {
+    margin: 0;
+    font-weight: 500;
+    line-height: 1.5;
+    font-size: 15.5px;
+  }
+
+
 }
 
 @media (max-height: 600px) {
 
-  
+
   .quiz-body #quiz-container {
     margin: 100px 20px 20px 20px;
   }
@@ -977,7 +1362,177 @@ font-size: 1.1rem; color: red;
   #start-screen {
     box-shadow: 12px 10px 0px var(--font-color);
   }
+
+   
+    /* ---final Score Screen -- */
   
+    .envelope-container {
+      width: 300px;
+      height: 300px;
+      background-size: contain;
+      z-index:10;
+      background-repeat: no-repeat;
+      background-position: center;
+      /* background-color: yellow; */
+    }
+  
+  
+    .envelope-container .closed-envelope,
+    .envelope-container .back-envelope,
+    .envelope-container .front-envelope,
+    .envelope-container .letter {
+      position: absolute;
+      height: 100%;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-left: 0%;
+      margin-top: 4%;  
+    }
+  
+  
+  .envelope-container .back-envelope {
+    position: absolute;
+    top: -40px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 2;
+    display: none; /* Hidden initially */
+  
+    /* Back envelope should be behind the front envelope */
+  }
+  
+  
+  .envelope-container .front-envelope {
+    position: absolute;
+    top: 13px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 3;
+    display: none; /* Hidden initially */
+  
+    /* Front envelope should be above the back envelope */
+  }
+  
+  
+  .envelope-container .closed-envelope {
+    z-index: 999;
+    display: block; /* Visible by default */
+  }
+  
+  
+  /* When the envelope opens: Show the back, front, and letter */
+  .envelope-container.open .closed-envelope {
+    display: none; /* Hide the closed envelope when it opens */
+  }
+  
+  .envelope-container.open .back-envelope {
+    display: block; /* Show the back envelope */
+  }
+  
+  .envelope-container.open .front-envelope {
+    display: block; /* Show the front envelope */
+  }  
+  
+  .envelope-container.open .letter {
+    display: block; /* Show the letter */
+    transition: display 2s ease-in-out;
+  
+  }  
+  
+  .envelope-container .letter{
+    display: block; /* Show the letter */
+    transition: display 2s ease-in-out;
+  
+  }
+  
+  
+  /* Letter */
+  .envelope-container .letter {
+    position: absolute;
+    bottom: 0;
+    left: 2px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    /* display: flex; */
+    justify-content: center;
+    align-items: flex-end;
+    transition: top 2s ease-in-out;
+    margin-top: 34%;
+    width: 98%;
+    top: -48% !important;
+    display: none; /* Hidden initially */
+  }
+  
+  
+  /* When the envelope opens: Slide the letter upwards */
+  .envelope-container.open .letter {
+    top: -57% !important;
+    background-repeat: no-repeat;
+    z-index: 1;
+    display: none; /* Hidden initially */
+  }
+  
+  
+  
+  .letter-content {
+    padding: 162px 34px;
+    padding-top: 30px !important;
+    bottom: auto;
+    /* Remove the bottom alignment */
+    font-size: 0.8rem;
+    /* Adjust font size for readability on smaller screens */
+    text-align: justify;
+    /* background-color: green; */
+  }
+  
+  .score {
+    font-size: 3.5rem;
+    /* Smaller score font */
+    text-align: center;
+  }
+  
+  .your-score {
+    font-size: 1.3rem;
+    /* Smaller "Your score is" text */
+  }
+  
+  .congatulatory-message {
+    font-size: 1rem !important;
+    text-align: justify center;
+  }
+  
+  /* Fix button position to bottom right of score screen */
+  .floating-button {
+    position: fixed;
+    bottom: 35px;
+    right: 43%;
+    background-color: #ee453f;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: 'Alegreya', serif;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  
+  .floating-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+    z-index: 9999;
+    /* Ensure it's on top of other elements */
+  }
+
+
 }
 
 @media (max-width: 768px) {
@@ -1009,7 +1564,8 @@ font-size: 1.1rem; color: red;
     gap: 10px;
   }
 
-  #group-name, .design-div {
+  #group-name,
+  .design-div {
     font-size: 2rem;
     padding: 5px 20px;
   }
@@ -1024,69 +1580,6 @@ font-size: 1.1rem; color: red;
     font-size: 20px;
   }
 
-
-  /* for quiz page */
-
-  /* #navigation-bar {
-    position: static;
-    top: unset;
-    right: unset;
-    display: flex;
-    margin: 10px 10px 10px 100px;
-  } */
-
-  #quiz-container {
-    margin: 20px;
-    width: 75%;
-    box-shadow: none;
-  }
-
-  #question-image {
-    height: 200px; 
-    width: 400px;
-    object-position: center;
-    object-fit: cover; 
-  }
-
-  #question {
-    font-size: 15px;
-  }
-
-  #question-number-hdng{
-    font-size: 25px;
-  }
-
-  .sub-container {
-    flex-direction: column;
-    padding: 10px;
-  }
-
-  .left-container {
-    border-right: none;
-    border-bottom: 2px dashed black;
-    padding-right: 0;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-  }
-
-  .inner-container {
-    padding-left: 0;
-  }
-
-  #question-header {
-    font-size: 1.5rem;
-  }
-
-  #options {
-    grid-template-columns: 1fr;
-  }
-
-  .option {
-    font-size: 1rem;
-    padding: 10px;
-    min-height: auto;
-  }
-
   #next-button {
     position: static;
     transform: none;
@@ -1097,7 +1590,7 @@ font-size: 1.1rem; color: red;
     margin-top: 20px;
   }
 
-  #next-button:hover {
+    #next-button:hover {
     transform: scale(1.05);
   }
 
@@ -1106,14 +1599,177 @@ font-size: 1.1rem; color: red;
     margin: 20px auto;
     padding: 0 10px;
   }
-  /* for the answer key */
-  .answer-key-columns {
-    flex-direction: column;
+
+  #quiz-container {
+    margin-top: 20%;
+    width: 65%;
   }
 
-  .answer-column {
-    width: 100%;
+  
+    /* for quiz page */
+  /* ------------------ FINAL SCORE -------------------- */
+  /* envelope for score screen and answer key */
+  
+  .envelope-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 353px;
+    height: 340px;
+    z-index: 10;
+    /* top: 48%; */
+    margin: -9% 2%;
   }
+  
+  .score {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2.2rem;
+  }
+  
+  .your-score {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: .7;
+  }
+  
+  .congratulatory-message{
+  font-size: .7rem;
+  }
+  
+  
+  #score-screen {
+  
+    .envelope-container .letter {
+      background-image: url('letter2.png');
+      z-index: 2;
+      transition: top 2s ease-in-out;
+      top: 0;
+      display: flex;
+      align-items: center top;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: none;
+      height: 101%;
+      margin-top: 31%;
+    }
+  
+    /* When envelope opens: letter slides higher */
+    .envelope-container.open .letter {
+      top: -100%;
+    }
+  }
+  
+  
+  /* ------------------ Answer Key Section -------------------- */
+  
+  #answer-key-section {
+  
+    .envelope-container .letter {
+      background-image: url(letter2.png);
+      z-index: 2;
+      transition: top 2s ease-in-out;
+      top: 0;
+      display: flex
+  ;
+      align-items: center top;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: none;
+      height: 130%;
+      font-size: 8px;
+      margin-top: 5%;
+    }
+  
+    /* When envelope opens: letter slides higher */
+    .envelope-container.open .letter {
+      top: -340px;
+    }
+  }
+  /* 
+  .envelope-container .front-envelope {
+    background-image: url('front-envelope.png');
+    z-index: 3;
+    top: 0;
+  }
+  
+  
+  /* Closed envelope disappears */
+  .envelope-container.open .closed-envelope {
+    display: none;
+  } 
+  /* 
+  .letter-scroll {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 10px;
+    box-sizing: border-box;
+  } */
+  
+  
+  
+  /* Fix button position to bottom right of score screen */
+  .floating-button {
+    position: fixed;
+    bottom: 30px;
+    right: 290px;
+    background-color: #ee453f;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: 'Alegreya', serif;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  
+  .floating-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* answer key */
+  .answer-key-columns {
+    display: flex
+    ;
+            justify-content: space-between;
+            width: 90%;
+            gap: 40px;
+            padding: 20px;
+            font-family: 'Alegreya', serif;
+            flex-direction: row;
+            font-size: -3px;
+            margin: 46% 4%;
+            height: 42%;
+            overflow-y: scroll;
+  }
+  
+  .answer-column {
+    width: 50%;
+    display: flex
+  ;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+    font-size: 10px;
+    margin-left: 8%;
+  }
+  
+  .answer-column p {
+    margin: 0;
+    font-weight: 500;
+    line-height: 1.5;
+    font-size: 15.5px;
+    font-size: 10px !important; 
+  }
+
+
 }
 
 @media (max-width: 576px) {
@@ -1144,7 +1800,8 @@ font-size: 1.1rem; color: red;
     font-size: 1rem;
   }
 
-  #group-name, .design-div {
+  #group-name,
+  .design-div {
     font-size: 1.5rem;
     padding: 5px 15px;
   }
@@ -1156,16 +1813,180 @@ font-size: 1.1rem; color: red;
   }
 
   #question-image {
-    height: 100px; 
+    height: 100px;
     width: 250px;
     object-position: center;
-    object-fit: cover; 
+    object-fit: cover;
+  }
+
+  #quiz-container {
+    width: 80%;
   }
 
   .sub-container {
     margin: 0;
   }
+
+   
+    /* ------------------ FINAL SCORE -------------------- */
+  /* envelope for score screen and answer key */
   
+  .envelope-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 353px;
+    height: 340px;
+    z-index: 10;
+    /* top: 48%; */
+    margin: -15% 2%;
+  }
+  
+  .score {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2.2rem;
+  }
+  
+  .your-score {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: .7;
+  }
+  
+  .congratulatory-message{
+  font-size: .7rem;
+  }
+  
+  
+  #score-screen {
+  
+    .envelope-container .letter {
+      background-image: url('letter2.png');
+      z-index: 2;
+      transition: top 2s ease-in-out;
+      top: 0;
+      display: flex;
+      align-items: center top;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: none;
+      height: 101%;
+      margin-top: 31%;
+    }
+  
+    /* When envelope opens: letter slides higher */
+    .envelope-container.open .letter {
+      top: -100%;
+    }
+  }
+  
+  
+  /* ------------------ Answer Key Section -------------------- */
+  
+  #answer-key-section {
+  
+    .envelope-container .letter {
+      background-image: url(letter2.png);
+      z-index: 2;
+      transition: top 2s ease-in-out;
+      top: 0;
+      display: flex
+  ;
+      align-items: center top;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: none;
+      height: 130%;
+      font-size: 8px;
+      margin-top: 5%;
+    }
+  
+    /* When envelope opens: letter slides higher */
+    .envelope-container.open .letter {
+      top: -340px;
+    }
+  }
+  /* 
+  .envelope-container .front-envelope {
+    background-image: url('front-envelope.png');
+    z-index: 3;
+    top: 0;
+  }
+  
+  
+  /* Closed envelope disappears */
+  .envelope-container.open .closed-envelope {
+    display: none;
+  } 
+  /* 
+  .letter-scroll {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 10px;
+    box-sizing: border-box;
+  } */
+  
+  
+  
+  /* Fix button position to bottom right of score screen */
+  .floating-button {
+    position: fixed;
+    bottom: 30px;
+    right: 210px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: 'Alegreya', serif;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  
+  .floating-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* answer key */
+  .answer-key-columns {
+    display: flex
+    ;
+            justify-content: space-between;
+            width: 90%;
+            gap: 40px;
+            padding: 20px;
+            font-family: 'Alegreya', serif;
+            flex-direction: row;
+            font-size: -3px;
+            margin: 46% 4%;
+            height: 42%;
+            overflow-y: scroll;
+  }
+  
+  .answer-column {
+    width: 50%;
+    display: flex
+  ;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+    font-size: 10px;
+    margin-left: 8%;
+  }
+  
+  .answer-column p {
+    margin: 0;
+    font-weight: 500;
+    line-height: 1.5;
+    font-size: 15.5px;
+    font-size: 10px !important; 
+  }
+
 }
 
 @media (max-width: 400px) {
@@ -1186,11 +2007,22 @@ font-size: 1.1rem; color: red;
 
   .sub-container {
     margin: 0;
+    width: auto;
   }
 
-  .quiz-banner {
-    width: 100%;
+  #quiz-container {
+    width: 80%;
   }
+
+  #question {
+    font-size: 15px;
+  }
+
+  .inner-container h2 {
+    font-size: 15px;
+  }
+
+
   #quiz-title-container h1 {
     font-size: 2.4rem;
   }
@@ -1199,7 +2031,8 @@ font-size: 1.1rem; color: red;
     font-size: 0.9rem;
   }
 
-  #group-name, .design-div {
+  #group-name,
+  .design-div {
     font-size: 1.2rem;
     padding: 4px 10px;
   }
@@ -1219,64 +2052,162 @@ font-size: 1.1rem; color: red;
     font-size: 20px;
   }
 
-  /* ---final Score Screen -- */
 
+    
+    /* ------------------ FINAL SCORE -------------------- */
+  /* ------------------ FINAL SCORE -------------------- */
+  /* envelope for score screen and answer key */
   
-/* envelope for score screen */
-.envelope-container .closed-envelope,
-.envelope-container .back-envelope,
-.envelope-container .front-envelope,
-.envelope-container .letter {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-}
-
-.envelope-container .closed-envelope {
-  background-image: url('closed-envelope.png');
-  z-index: 4;
-}
-
-.envelope-container .back-envelope {
-  background-image: url('back-envelope.png');
-  z-index: 1;
-}
   .envelope-container {
     position: fixed;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    width: 500px;
-    height: 350px;
+    width: 353px;
+    height: 340px;
     z-index: 10;
+    /* top: 48%; */
+    margin: -15% 2%;
   }
-
-  /* Letter */
-
-
-  .letter-content{
-    background-color: white;
-    font-family: Alegreya, serif; padding: 30px;
-  }
-  #score-screen{
   
-  .envelope-container .letter {
-    background-image: url('letter2.png');
-    z-index: 2;
-    transition: top 2s ease-in-out;
-    top: 0;
-    display: flex;
-    align-items: center top;
-    justify-content: center;
-    overflow: hidden; 
-    box-shadow: none;
+  .score {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2.2rem;
   }
-  /* When envelope opens: letter slides higher */
-  .envelope-container.open .letter {
-    top: -235px;
+  
+  .your-score {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: .7;
   }
+  
+  .congratulatory-message{
+  font-size: .7rem;
+  }
+  
+  
+  #score-screen {
+  
+    .envelope-container .letter {
+      background-image: url('letter2.png');
+      z-index: 2;
+      transition: top 2s ease-in-out;
+      top: 0;
+      display: flex;
+      align-items: center top;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: none;
+      height: 101%;
+      margin-top: 31%;
+    }
+  
+    /* When envelope opens: letter slides higher */
+    .envelope-container.open .letter {
+      top: -100%;
+    }
+  }
+  
+  
+  /* ------------------ Answer Key Section -------------------- */
+  
+  #answer-key-section {
+  
+    .envelope-container .letter {
+      background-image: url(letter2.png);
+      z-index: 2;
+      transition: top 2s ease-in-out;
+      top: 0;
+      display: flex
+  ;
+      align-items: center top;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: none;
+      height: 130%;
+      font-size: 8px;
+      margin-top: 5%;
+    }
+  
+    /* When envelope opens: letter slides higher */
+    .envelope-container.open .letter {
+      top: -340px;
+    }
+  }
+  
+  /* Closed envelope disappears */
+  .envelope-container.open .closed-envelope {
+    display: none;
+  } 
+  /* 
+  .letter-scroll {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 10px;
+    box-sizing: border-box;
+  } */
+  
+  
+  
+  /* Fix button position to bottom right of score screen */
+  .floating-button {
+    position: fixed;
+    bottom: px;
+    right: 118px;
+    background-color: #ee453f;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: 'Alegreya', serif;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  
+  .floating-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* answer key */
+  .answer-key-columns {
+    display: flex
+    ;
+            justify-content: space-between;
+            width: 90%;
+            gap: 40px;
+            padding: 20px;
+            font-family: 'Alegreya', serif;
+            flex-direction: row;
+            font-size: -3px;
+            margin: 46% 4%;
+            height: 42%;
+            overflow-y: scroll;
+  }
+  
+  .answer-column {
+    width: 50%;
+    display: flex
+  ;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+    font-size: 10px;
+    margin-left: 8%;
+  }
+  
+  .answer-column p {
+    margin: 0;
+    font-weight: 500;
+    line-height: 1.5;
+    font-size: 15.5px;
+    font-size: 10px !important; 
   }
   
 }
