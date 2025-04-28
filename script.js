@@ -389,6 +389,3 @@ questions.sort(() => Math.random() - 0.5);
 questions.forEach(q => {
   q.options.sort(() => Math.random() - 0.5);
 });
-
-
-// envelope
