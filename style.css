@@ -93,14 +93,6 @@ body.dark-mode .option {
   color: #e0e0e0;
 }
 
-body.dark-mode .option:hover:not(:disabled) {
-  background-color: #3d3d3d;
-}
-
-body.dark-mode .selected-option {
-  border: 3px solid #e0e0e0;
-}
-
 body.dark-mode .question-num-subscript span {
   background-color: #2d2d2d;
 }
@@ -113,6 +105,12 @@ body.dark-mode .secondary-button {
 
 body.dark-mode .primary-button {
   background-color: #0d6efd;
+}
+
+body.dark-mode .selected-option {
+  border: 3px solid var(--secondary-color);
+  background-color: #df5b57;
+  transition: all 0.3s ease;
 }
 
 
@@ -433,7 +431,6 @@ h3 {
   padding: 30px;
   border-radius: 12px;
   box-shadow: 10px 10px 0px var(--font-color);
-  /* min-width: 50%; */
   width: 70%;
   text-align: center;
   margin: 20px 50px;
